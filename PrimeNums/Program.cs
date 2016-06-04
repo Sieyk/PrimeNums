@@ -29,9 +29,10 @@ class Program
         //of 2 as a prime can be assumed rather than checked for.
         //This change equates to around 5% better performance
         prevPrime[0] = 2;
-        prevPrime[1] = 3;
+        if (NUMPRIMES > 3)  //Fringe case handling
+            prevPrime[1] = 3;
 
-        for (; count < NUMPRIMES; count+=2) //Primes other than 2 are all odd
+        for (; count < NUMPRIMES; count += 2) //Primes other than 2 are all odd
         {
             //At every INTERVAL interations will update the user interface and
             //nicely display the progress of the prime generation
@@ -52,29 +53,30 @@ class Program
                 }
                 Console.Out.Write("]");
             }
-
-            for (int j = 1; j < primeCount; j++)    //Should be noted that 'j' only ever reaches primeCount when a prime is found
-            {
-                if (count % prevPrime[j] == 0)  //If a factor of the current number is found
+            if (NUMPRIMES != 3) {
+                for (int j = 1; j < primeCount; j++)    //Should be noted that 'j' only ever reaches primeCount when a prime is found
                 {
-                    factorFound = true;
-                    break;
+                    if (count % prevPrime[j] == 0)  //If a factor of the current number is found
+                    {
+                        factorFound = true;
+                        break;
+                    }
+                    //The 'if' statement below was an idea to improve efficiency
+                    //the logic is that x can only potentially be a factor of y if x^2 <= y
+                    if (count < (prevPrime[j] * prevPrime[j]))
+                    {
+                        break;
+                    }
                 }
-                //The 'if' statement below was an idea to improve efficiency
-                //the logic is that x can only potentially be a factor of y if x^2 <= y
-                if (count < (prevPrime[j] * prevPrime[j]))
+                if (factorFound)
                 {
-                    break;
+                    factorFound = false;
                 }
-            }
-            if (factorFound)
-            {
-                factorFound = false;
-            }
-            else
-            {
-                prevPrime[primeCount] = count;  //Add the found prime to the prime dictionary
-                primeCount++;
+                else
+                {
+                    prevPrime[primeCount] = count;  //Add the found prime to the prime dictionary
+                    primeCount++;
+                }
             }
         }
 
