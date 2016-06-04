@@ -1,0 +1,6 @@
+c:\users\sieyk\documents\visual studio 2015\Projects\PrimeNums\PrimeNums\bin\Debug\PrimeNums.exe.config
+c:\users\sieyk\documents\visual studio 2015\Projects\PrimeNums\PrimeNums\bin\Debug\PrimeNums.exe
+c:\users\sieyk\documents\visual studio 2015\Projects\PrimeNums\PrimeNums\bin\Debug\PrimeNums.pdb
+c:\users\sieyk\documents\visual studio 2015\Projects\PrimeNums\PrimeNums\obj\Debug\PrimeNums.csprojResolveAssemblyReference.cache
+c:\users\sieyk\documents\visual studio 2015\Projects\PrimeNums\PrimeNums\obj\Debug\PrimeNums.exe
+c:\users\sieyk\documents\visual studio 2015\Projects\PrimeNums\PrimeNums\obj\Debug\PrimeNums.pdb
