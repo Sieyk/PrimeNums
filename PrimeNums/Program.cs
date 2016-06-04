@@ -25,9 +25,13 @@ class Program
         bool factorFound = false;   //Only one factor needs to be found to invalidate a potential prime
 
         //Initialise the prevPrime array with the first prime
+        //Code was changed to essentially ignore 2; as the role
+        //of 2 as a prime can be assumed rather than checked for.
+        //This change equates to around 5% better performance
         prevPrime[0] = 2;
+        prevPrime[1] = 3;
 
-        for (; count < NUMPRIMES; count++)
+        for (; count < NUMPRIMES; count+=2) //Primes other than 2 are all odd
         {
             //At every INTERVAL interations will update the user interface and
             //nicely display the progress of the prime generation
@@ -49,7 +53,7 @@ class Program
                 Console.Out.Write("]");
             }
 
-            for (int j = 0; j < primeCount; j++)    //Should be noted that 'j' only ever reaches primeCount when a prime is found
+            for (int j = 1; j < primeCount; j++)    //Should be noted that 'j' only ever reaches primeCount when a prime is found
             {
                 if (count % prevPrime[j] == 0)  //If a factor of the current number is found
                 {
