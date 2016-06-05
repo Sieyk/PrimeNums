@@ -31,29 +31,30 @@ class Program
         prevPrime[0] = 2;
         if (NUMPRIMES > 3)  //Fringe case handling
             prevPrime[1] = 3;
-
-        for (; count < NUMPRIMES; count += 2) //Primes other than 2 are all odd
+        if (NUMPRIMES != 3)
         {
-            //At every INTERVAL interations will update the user interface and
-            //nicely display the progress of the prime generation
-            //however if performance is what you'd prefer, just remove this 'if' statement
-            if (INTERVAL != 0 && count % INTERVAL == 0)
+            for (; count < NUMPRIMES; count += 2) //Primes other than 2 are all odd
             {
-                Console.Clear();
-                Console.Out.WriteLine("Calculating prime numbers up to " + NUMPRIMES);
-                Console.Out.WriteLine("Current number: " + count);
-                Console.Out.Write("[");
-                for (int i = 1; i <= 50; i++) //50 because 100 / 2 = 50, I'm not bothered to make a smaller bar
+                //At every INTERVAL interations will update the user interface and
+                //nicely display the progress of the prime generation
+                //however if performance is what you'd prefer, just remove this 'if' statement
+                if (INTERVAL != 0 && count % INTERVAL == 0)
                 {
-                    //Essentially draws the percentage of how far along 'count' is
-                    if (i * 2 <= ((double)count / (double)NUMPRIMES) * 100.0)
-                        Console.Out.Write("|");
-                    else
-                        Console.Out.Write(" ");
+                    Console.Clear();
+                    Console.Out.WriteLine("Calculating prime numbers up to " + NUMPRIMES);
+                    Console.Out.WriteLine("Current number: " + count);
+                    Console.Out.Write("[");
+                    for (int i = 1; i <= 50; i++) //50 because 100 / 2 = 50, I'm not bothered to make a smaller bar
+                    {
+                        //Essentially draws the percentage of how far along 'count' is
+                        if (i * 2 <= ((double)count / (double)NUMPRIMES) * 100.0)
+                            Console.Out.Write("|");
+                        else
+                            Console.Out.Write(" ");
+                    }
+                    Console.Out.Write("]");
                 }
-                Console.Out.Write("]");
-            }
-            if (NUMPRIMES != 3) {
+
                 for (int j = 1; j < primeCount; j++)    //Should be noted that 'j' only ever reaches primeCount when a prime is found
                 {
                     if (count % prevPrime[j] == 0)  //If a factor of the current number is found
@@ -77,6 +78,7 @@ class Program
                     prevPrime[primeCount] = count;  //Add the found prime to the prime dictionary
                     primeCount++;
                 }
+
             }
         }
 
